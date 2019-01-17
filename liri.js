@@ -3,6 +3,7 @@ var keys = require("./keys.js");
 var fs = require("fs");
 var axios = require('axios');
 var Spotify = require('node-spotify-api');
+var moment = require('moment');
 
 var spotify = new Spotify(keys.spotify);
 var action = process.argv[2];
@@ -16,7 +17,22 @@ switch (action) {
         break;
 
     case "spotify-this-song":
-        spotify.search();
+    spotify
+    .search({ type: 'track', query: value, limit: 1 })
+    .then(function (response) {
+        var items = response.tracks.items;
+        // console.log(items);
+        for (var i = 0; i < items.length; i++) {
+            var itemsArr = items[i];
+            console.log("Artist: " + itemsArr.artists[3]);
+            console.log("Song Name: " + itemsArr.name);
+            console.log("Spotify Link: " + itemsArr.external_urls.spotify);
+            console.log("Album: " + itemsArr.album.name);
+        }
+    })
+    .catch(function (err) {
+        console.log(err);
+    });
         break;
 
     case "movie-this":
@@ -28,22 +44,7 @@ switch (action) {
         break;
 }
 
-spotify
-    .search({ type: 'track', query: value, limit: 1 })
-    .then(function (response) {
-        var items = response.tracks.items;
-        // console.log(items);
-        for (var i = 0; i < items.length; i++) {
-            var itemsArr = items[i];
-            console.log(itemsArr.artists[3]);
-            console.log(itemsArr.name);
-            console.log(itemsArr.external_urls);
-            console.log(itemsArr.album.name);
-        }
-    })
-    .catch(function (err) {
-        console.log(err);
-    });
+
 
 
 function ombd() {
@@ -51,14 +52,14 @@ function ombd() {
     axios
         .get(omdbURL)
         .then(function (response) {
-            console.log(response.data.Title);
-            console.log(response.data.Year);
-            console.log(response.data.imdbRating);
-            console.log(response.data.Ratings[1]);
-            console.log(response.data.Production);
-            console.log(response.data.Language);
-            console.log(response.data.Plot);
-            console.log(response.data.Actors);
+            console.log("Movie: " + response.data.Title);
+            console.log("Date Released: " + response.data.Year);
+            console.log("IMBD Rating: " + response.data.imdbRating);
+            console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value);
+            console.log("Studio: " + response.data.Production);
+            console.log("Languages: " + response.data.Language);
+            console.log("Plot: " + response.data.Plot);
+            console.log("Cast: " + response.data.Actors);
         })
         .catch(function (error) {
             if (error.response) {
@@ -87,13 +88,11 @@ function bit() {
         .then(function (response) {
             for (var i = 0; i < response.data.length; i++) {
                 var dataArr = response.data[i];
-                console.log(dataArr.venue.name);
-                console.log(dataArr.venue.city);
-                console.log(dataArr.datetime);
+                var date = moment(dataArr.datetime).format('MMMM Do YYYY, h:mm:ss a')
+                console.log("Venue: " + dataArr.venue.name);
+                console.log("City: " + dataArr.venue.city);
+                console.log("Date: " + date);
             };
-            // console.log(response.data.id);
-            // console.log(response.data.venue.city);
-            // console.log(response.data.datetime);
         })
         .catch(function (error) {
             if (error.response) {
@@ -114,6 +113,7 @@ function bit() {
         });
 };
 
+
 function doIt() {
     fs.readFile("random.txt", "utf8", function (err, data) {
 
@@ -128,7 +128,7 @@ function doIt() {
                     result += parseFloat(data[i]);
                 }
             }
-            spotify();
+            spotify.search();
         }
 
     })
