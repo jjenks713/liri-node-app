@@ -24,7 +24,7 @@ switch (action) {
         // console.log(items);
         for (var i = 0; i < items.length; i++) {
             var itemsArr = items[i];
-            console.log("Artist: " + itemsArr.artists[3]);
+            console.log("Artist: " + itemsArr.album.artists[0].name);
             console.log("Song Name: " + itemsArr.name);
             console.log("Spotify Link: " + itemsArr.external_urls.spotify);
             console.log("Album: " + itemsArr.album.name);
