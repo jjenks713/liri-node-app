@@ -93,6 +93,9 @@ function bit() {
                 console.log("City: " + dataArr.venue.city);
                 console.log("Date: " + date);
             };
+            if (response.data === false) {
+                return console.log("Sorry no upcoming Events");
+            }
         })
         .catch(function (error) {
             if (error.response) {
@@ -116,7 +119,6 @@ function bit() {
 
 function doIt() {
     fs.readFile("random.txt", "utf8", function (err, data) {
-
         if (err) {
             return console.log(err);
         } else {
