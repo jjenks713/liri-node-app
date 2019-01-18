@@ -93,8 +93,8 @@ function bit() {
                 console.log("City: " + dataArr.venue.city);
                 console.log("Date: " + date);
             };
-            if (response.data === false) {
-                return console.log("Sorry no upcoming Events");
+            if (!response.data.length) {
+                console.log("Sorry no upcoming Events for this Artist!");
             }
         })
         .catch(function (error) {
