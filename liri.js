@@ -60,6 +60,9 @@ function ombd() {
             console.log("Languages: " + response.data.Language);
             console.log("Plot: " + response.data.Plot);
             console.log("Cast: " + response.data.Actors);
+            if (!value){
+                value = "Mr Nobody"
+            }
         })
         .catch(function (error) {
             if (error.response) {
@@ -122,16 +125,24 @@ function doIt() {
         if (err) {
             return console.log(err);
         } else {
+            
             data = data.split(", ");
             process.argv[2] = data[0];
             process.argv[3] = data[1];
-            for (var i = 0; i < data.length; i++) {
-                if (parseFloat(data[i])) {
-                    result += parseFloat(data[i]);
+            console.log(data);
+            spotify
+            .search({ type: 'track', query: data[1], limit: 1 })
+            .then(function (response) {
+                var items = response.tracks.items;
+                // console.log(items);
+                for (var i = 0; i < items.length; i++) {
+                    var itemsArr = items[i];
+                    console.log("Artist: " + itemsArr.album.artists[0].name);
+                    console.log("Song Name: " + itemsArr.name);
+                    console.log("Spotify Link: " + itemsArr.external_urls.spotify);
+                    console.log("Album: " + itemsArr.album.name);
                 }
-            }
-            spotify.search();
+            })
         }
-
     })
 }
