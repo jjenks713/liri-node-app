@@ -10,29 +10,16 @@ var action = process.argv[2];
 var value = process.argv[3];
 var bitURL = "https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp&date=upcoming";
 var omdbURL = "http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy";
-
+if (!value) {
+    value = "Mr Nobody";
+}
 switch (action) {
     case "concert-this":
         bit();
         break;
 
     case "spotify-this-song":
-    spotify
-    .search({ type: 'track', query: value, limit: 1 })
-    .then(function (response) {
-        var items = response.tracks.items;
-        // console.log(items);
-        for (var i = 0; i < items.length; i++) {
-            var itemsArr = items[i];
-            console.log("Artist: " + itemsArr.album.artists[0].name);
-            console.log("Song Name: " + itemsArr.name);
-            console.log("Spotify Link: " + itemsArr.external_urls.spotify);
-            console.log("Album: " + itemsArr.album.name);
-        }
-    })
-    .catch(function (err) {
-        console.log(err);
-    });
+        spotifyThis();
         break;
 
     case "movie-this":
@@ -44,7 +31,24 @@ switch (action) {
         break;
 }
 
-
+function spotifyThis(){
+    spotify
+    .search({ type: 'track', query: value, limit: 1 })
+    .then(function (response) {
+        var items = response.tracks.items;
+        // console.log(items);
+        for (var i = 0; i < items.length; i++) {
+            var itemsArr = items[i];
+            console.log("Artist: " + itemsArr.album.artists[0].name + "\n");
+            console.log("Song Name: " + itemsArr.name + "\n");
+            console.log("Spotify Link: " + itemsArr.external_urls.spotify + "\n");
+            console.log("Album: " + itemsArr.album.name + "\n");
+        }
+    })
+    .catch(function (err) {
+        console.log(err);
+    });
+}
 
 
 function ombd() {
@@ -52,17 +56,16 @@ function ombd() {
     axios
         .get(omdbURL)
         .then(function (response) {
-            console.log("Movie: " + response.data.Title);
-            console.log("Date Released: " + response.data.Year);
-            console.log("IMBD Rating: " + response.data.imdbRating);
-            console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value);
-            console.log("Studio: " + response.data.Production);
-            console.log("Languages: " + response.data.Language);
-            console.log("Plot: " + response.data.Plot);
-            console.log("Cast: " + response.data.Actors);
-            if (!value){
-                value = "Mr Nobody"
-            }
+
+            console.log("Movie: " + response.data.Title + "\n");
+            console.log("Date Released: " + response.data.Year + "\n");
+            console.log("IMBD Rating: " + response.data.imdbRating + "\n");
+            console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value + "\n");
+            console.log("Studio: " + response.data.Production + "\n");
+            console.log("Languages: " + response.data.Language + "\n");
+            console.log("Plot: " + response.data.Plot + "\n");
+            console.log("Cast: " + response.data.Actors + "\n");
+
         })
         .catch(function (error) {
             if (error.response) {
@@ -127,11 +130,9 @@ function doIt() {
         } else {
             
             data = data.split(", ");
-            process.argv[2] = data[0];
-            process.argv[3] = data[1];
             console.log(data);
             spotify
-            .search({ type: 'track', query: data[1], limit: 1 })
+            .search({ type: 'track', query: data, limit: 1 })
             .then(function (response) {
                 var items = response.tracks.items;
                 // console.log(items);
