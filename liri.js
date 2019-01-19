@@ -9,11 +9,9 @@ var spotify = new Spotify(keys.spotify);
 var action = process.argv[2];
 var value = process.argv[3];
 
-if (!value) {
+if (!value && action === "movie-this") {
     value = "Mr Nobody";
 }
-
-var bitURL = "https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp&date=upcoming";
 var omdbURL = "http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy";
 
 switch (action) {
@@ -39,13 +37,24 @@ function spotifyThis(){
     .search({ type: 'track', query: value, limit: 1 })
     .then(function (response) {
         var items = response.tracks.items;
-        // console.log(items);
+        var divider = "\n------------------------------------------------------------\n\n";
         for (var i = 0; i < items.length; i++) {
             var itemsArr = items[i];
-            console.log("Artist: " + itemsArr.album.artists[0].name + "\n");
-            console.log("Song Name: " + itemsArr.name + "\n");
-            console.log("Spotify Link: " + itemsArr.external_urls.spotify + "\n");
-            console.log("Album: " + itemsArr.album.name + "\n");
+
+            var spotify = ["\nArtist: " + itemsArr.album.artists[0].name,
+            "\n\nSong Name: " + itemsArr.name,
+            "\n\nSpotify Link: " + itemsArr.external_urls.spotify,
+            "\n\nAlbum: " + itemsArr.album.name + "\n"]
+
+            console.log("\nArtist: " + itemsArr.album.artists[0].name,
+            "\n\nSong Name: " + itemsArr.name,
+            "\n\nSpotify Link: " + itemsArr.external_urls.spotify,
+            "\n\nAlbum: " + itemsArr.album.name + "\n");
+
+            fs.appendFile("log.txt", spotify + divider, function(err) {
+                if (err) throw err;
+               
+              });
         }
     })
     .catch(function (err) {
@@ -59,15 +68,29 @@ function ombd() {
     axios
         .get(omdbURL)
         .then(function (response) {
+            var divider = "\n------------------------------------------------------------\n\n";
+            var movieData = ["Movie: " + response.data.Title,
+            "\n\nDate Released: " + response.data.Year,
+            "\n\nIMBD Rating: " + response.data.imdbRating,
+            "\n\nRotten Tomatoes: " + response.data.Ratings[1].Value,
+            "\n\nStudio: " + response.data.Production,
+            "\n\nLanguages: " + response.data.Language,
+            "\n\nPlot: " + response.data.Plot,
+            "\n\nCast: " + response.data.Actors]
 
-            console.log("Movie: " + response.data.Title + "\n");
-            console.log("Date Released: " + response.data.Year + "\n");
-            console.log("IMBD Rating: " + response.data.imdbRating + "\n");
-            console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value + "\n");
-            console.log("Studio: " + response.data.Production + "\n");
-            console.log("Languages: " + response.data.Language + "\n");
-            console.log("Plot: " + response.data.Plot + "\n");
-            console.log("Cast: " + response.data.Actors + "\n");
+            console.log("\nMovie: " + response.data.Title,
+            "\n\nDate Released: " + response.data.Year,
+            "\n\nIMBD Rating: " + response.data.imdbRating,
+            "\n\nRotten Tomatoes: " + response.data.Ratings[1].Value,
+            "\n\nStudio: " + response.data.Production,
+            "\n\nLanguages: " + response.data.Language,
+            "\n\nPlot: " + response.data.Plot,
+            "\n\nCast: " + response.data.Actors);
+
+            fs.appendFile("log.txt", movieData + divider, function(err) {
+                if (err) throw err;
+               
+              });
 
         })
         .catch(function (error) {
@@ -92,16 +115,37 @@ function ombd() {
 // Bands in Town API
 // app_id=codingbootcamp
 function bit() {
+
+    var bitURL = "https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp&date=upcoming";
     axios
         .get(bitURL)
         .then(function (response) {
-            for (var i = 0; i < response.data.length; i++) {
-                var dataArr = response.data[i];
-                var date = moment(dataArr.datetime).format('MMMM Do YYYY, h:mm:ss a')
-                console.log("Venue: " + dataArr.venue.name);
-                console.log("City: " + dataArr.venue.city);
-                console.log("Date: " + date);
+            var dataArr = [response.data[0], response.data[1], response.data[2], response.data[3], response.data[4]]
+            console.log(dataArr[0].venue.name);
+            for (var i = 0; i < dataArr.length; i++) {
+                var bandStuff = dataArr[i];
+                var date = moment(bandStuff.datetime).format('MM/DD/YY');
+
+                var BITData = ["\nVenue: " + bandStuff.venue.name,
+                "\n\nCity: " + bandStuff.venue.city,
+                "\n\nDate: " + date + "\n"];
+                
+                console.log("\nVenue: " + bandStuff.venue.name,
+                "\n\nCity: " + bandStuff.venue.city,
+                "\n\nDate: " + date + "\n");
+
+                fs.appendFile("log.txt", BITData, function(err) {
+                    if (err) throw err;
+                   
+                  });
             };
+
+            var divider = "\n------------------------------------------------------------\n\n";
+            fs.appendFile("log.txt", divider, function(err) {
+                if (err) throw err;
+               
+              });
+            
             if (!response.data.length) {
                 console.log("Sorry no upcoming Events for this Artist!");
             }
@@ -141,10 +185,10 @@ function doIt() {
                 // console.log(items);
                 for (var i = 0; i < items.length; i++) {
                     var itemsArr = items[i];
-                    console.log("Artist: " + itemsArr.album.artists[0].name);
-                    console.log("Song Name: " + itemsArr.name);
-                    console.log("Spotify Link: " + itemsArr.external_urls.spotify);
-                    console.log("Album: " + itemsArr.album.name);
+                    console.log("Artist: " + itemsArr.album.artists[0].name + "\n");
+                    console.log("Song Name: " + itemsArr.name + "\n");
+                    console.log("Spotify Link: " + itemsArr.external_urls.spotify + "\n");
+                    console.log("Album: " + itemsArr.album.name + "\n");
                 }
             })
         }

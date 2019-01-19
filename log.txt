@@ -1,0 +1,170 @@
+
+Venue: Shea's Performing Art Center,
+
+City: Buffalo,
+
+Date: 03/10/19
+
+------------------------------------------------------------
+
+Venue: Palace Theatre,
+
+City: Albany,
+
+Date: 03/11/19
+
+------------------------------------------------------------
+
+Venue: Hippodrome Theatre,
+
+City: Baltimore,
+
+Date: 03/13/19
+
+------------------------------------------------------------
+
+Venue: Chrysler Hall,
+
+City: Norfolk,
+
+Date: 03/14/19
+
+------------------------------------------------------------
+
+Venue: Raleigh Memorial Auditorium,
+
+City: Raleigh,
+
+Date: 03/16/19
+
+------------------------------------------------------------
+
+Venue: Raleigh Memorial Auditorium,
+
+City: Raleigh,
+
+Date: 03/16/19
+
+------------------------------------------------------------
+
+Venue: Shea's Performing Art Center,
+
+City: Buffalo,
+
+Date: 03/10/19
+Venue: Palace Theatre,
+
+City: Albany,
+
+Date: 03/11/19
+Venue: Hippodrome Theatre,
+
+City: Baltimore,
+
+Date: 03/13/19
+Venue: Chrysler Hall,
+
+City: Norfolk,
+
+Date: 03/14/19
+Venue: Raleigh Memorial Auditorium,
+
+City: Raleigh,
+
+Date: 03/16/19
+
+Venue: Shea's Performing Art Center,
+
+City: Buffalo,
+
+Date: 03/10/19
+
+Venue: Palace Theatre,
+
+City: Albany,
+
+Date: 03/11/19
+
+Venue: Hippodrome Theatre,
+
+City: Baltimore,
+
+Date: 03/13/19
+
+Venue: Chrysler Hall,
+
+City: Norfolk,
+
+Date: 03/14/19
+
+Venue: Raleigh Memorial Auditorium,
+
+City: Raleigh,
+
+Date: 03/16/19
+
+Venue: Shea's Performing Art Center,
+
+City: Buffalo,
+
+Date: 03/10/19
+
+Venue: Palace Theatre,
+
+City: Albany,
+
+Date: 03/11/19
+
+Venue: Hippodrome Theatre,
+
+City: Baltimore,
+
+Date: 03/13/19
+
+Venue: Chrysler Hall,
+
+City: Norfolk,
+
+Date: 03/14/19
+
+Venue: Raleigh Memorial Auditorium,
+
+City: Raleigh,
+
+Date: 03/16/19
+
+------------------------------------------------------------
+
+
+Venue: Shea's Performing Art Center,
+
+City: Buffalo,
+
+Date: 03/10/19
+
+Venue: Palace Theatre,
+
+City: Albany,
+
+Date: 03/11/19
+
+Venue: Hippodrome Theatre,
+
+City: Baltimore,
+
+Date: 03/13/19
+
+Venue: Chrysler Hall,
+
+City: Norfolk,
+
+Date: 03/14/19
+
+Venue: Raleigh Memorial Auditorium,
+
+City: Raleigh,
+
+Date: 03/16/19
+
+------------------------------------------------------------
+
