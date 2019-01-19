@@ -4,19 +4,24 @@ Backend app to search through Spotify, Bands in town and OMDB api's.
 Your commands will be:
 
 concert-this <band/artist>
+
 This will search the Bands in town API and bring back info on upcoming shows; 
   * Name of the venue
   * Venue location
   * Date of the Event
 
+
 spotify-this-song <song name>
+ 
 This will search spotify for info on song name input; 
   * Artist(s)
   * The song's name
   * A preview link of the song from Spotify
   * The album that the song is from
   
+  
 movie-this <movie name> (if no movie name is put in it will default to "Mr Nobody"
+ 
 This will search OMBD for info on movie input;   
    * Title of the movie.
    * Year the movie came out.
