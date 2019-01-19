@@ -32,34 +32,34 @@ switch (action) {
         break;
 }
 
-function spotifyThis(){
+function spotifyThis() {
     spotify
-    .search({ type: 'track', query: value, limit: 1 })
-    .then(function (response) {
-        var items = response.tracks.items;
-        var divider = "\n------------------------------------------------------------\n\n";
-        for (var i = 0; i < items.length; i++) {
-            var itemsArr = items[i];
+        .search({ type: 'track', query: value, limit: 1 })
+        .then(function (response) {
+            var items = response.tracks.items;
+            var divider = "\n------------------------------------------------------------\n\n";
+            for (var i = 0; i < items.length; i++) {
+                var itemsArr = items[i];
 
-            var spotify = ["\nArtist: " + itemsArr.album.artists[0].name,
-            "\n\nSong Name: " + itemsArr.name,
-            "\n\nSpotify Link: " + itemsArr.external_urls.spotify,
-            "\n\nAlbum: " + itemsArr.album.name + "\n"]
+                var spotify = ["\nArtist: " + itemsArr.album.artists[0].name,
+                "\n\nSong Name: " + itemsArr.name,
+                "\n\nSpotify Link: " + itemsArr.external_urls.spotify,
+                "\n\nAlbum: " + itemsArr.album.name + "\n"]
 
-            console.log("\nArtist: " + itemsArr.album.artists[0].name,
-            "\n\nSong Name: " + itemsArr.name,
-            "\n\nSpotify Link: " + itemsArr.external_urls.spotify,
-            "\n\nAlbum: " + itemsArr.album.name + "\n");
+                console.log("\nArtist: " + itemsArr.album.artists[0].name,
+                    "\n\nSong Name: " + itemsArr.name,
+                    "\n\nSpotify Link: " + itemsArr.external_urls.spotify,
+                    "\n\nAlbum: " + itemsArr.album.name + "\n");
 
-            fs.appendFile("log.txt", spotify + divider, function(err) {
-                if (err) throw err;
-               
-              });
-        }
-    })
-    .catch(function (err) {
-        console.log(err);
-    });
+                fs.appendFile("log.txt", spotify + divider, function (err) {
+                    if (err) throw err;
+
+                });
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 }
 
 
@@ -79,18 +79,18 @@ function ombd() {
             "\n\nCast: " + response.data.Actors]
 
             console.log("\nMovie: " + response.data.Title,
-            "\n\nDate Released: " + response.data.Year,
-            "\n\nIMBD Rating: " + response.data.imdbRating,
-            "\n\nRotten Tomatoes: " + response.data.Ratings[1].Value,
-            "\n\nStudio: " + response.data.Production,
-            "\n\nLanguages: " + response.data.Language,
-            "\n\nPlot: " + response.data.Plot,
-            "\n\nCast: " + response.data.Actors);
+                "\n\nDate Released: " + response.data.Year,
+                "\n\nIMBD Rating: " + response.data.imdbRating,
+                "\n\nRotten Tomatoes: " + response.data.Ratings[1].Value,
+                "\n\nStudio: " + response.data.Production,
+                "\n\nLanguages: " + response.data.Language,
+                "\n\nPlot: " + response.data.Plot,
+                "\n\nCast: " + response.data.Actors);
 
-            fs.appendFile("log.txt", movieData + divider, function(err) {
+            fs.appendFile("log.txt", movieData + divider, function (err) {
                 if (err) throw err;
-               
-              });
+
+            });
 
         })
         .catch(function (error) {
@@ -129,23 +129,23 @@ function bit() {
                 var BITData = ["\nVenue: " + bandStuff.venue.name,
                 "\n\nCity: " + bandStuff.venue.city,
                 "\n\nDate: " + date + "\n"];
-                
-                console.log("\nVenue: " + bandStuff.venue.name,
-                "\n\nCity: " + bandStuff.venue.city,
-                "\n\nDate: " + date + "\n");
 
-                fs.appendFile("log.txt", BITData, function(err) {
+                console.log("\nVenue: " + bandStuff.venue.name,
+                    "\n\nCity: " + bandStuff.venue.city,
+                    "\n\nDate: " + date + "\n");
+
+                fs.appendFile("log.txt", BITData, function (err) {
                     if (err) throw err;
-                   
-                  });
+
+                });
             };
 
             var divider = "\n------------------------------------------------------------\n\n";
-            fs.appendFile("log.txt", divider, function(err) {
+            fs.appendFile("log.txt", divider, function (err) {
                 if (err) throw err;
-               
-              });
-            
+
+            });
+
             if (!response.data.length) {
                 console.log("Sorry no upcoming Events for this Artist!");
             }
@@ -175,22 +175,36 @@ function doIt() {
         if (err) {
             return console.log(err);
         } else {
-            
+
             data = data.split(", ");
             console.log(data);
             spotify
             .search({ type: 'track', query: data, limit: 1 })
             .then(function (response) {
                 var items = response.tracks.items;
-                // console.log(items);
+                var divider = "\n------------------------------------------------------------\n\n";
                 for (var i = 0; i < items.length; i++) {
                     var itemsArr = items[i];
-                    console.log("Artist: " + itemsArr.album.artists[0].name + "\n");
-                    console.log("Song Name: " + itemsArr.name + "\n");
-                    console.log("Spotify Link: " + itemsArr.external_urls.spotify + "\n");
-                    console.log("Album: " + itemsArr.album.name + "\n");
+    
+                    var spotify = ["\nArtist: " + itemsArr.album.artists[0].name,
+                    "\n\nSong Name: " + itemsArr.name,
+                    "\n\nSpotify Link: " + itemsArr.external_urls.spotify,
+                    "\n\nAlbum: " + itemsArr.album.name + "\n"]
+    
+                    console.log("\nArtist: " + itemsArr.album.artists[0].name,
+                        "\n\nSong Name: " + itemsArr.name,
+                        "\n\nSpotify Link: " + itemsArr.external_urls.spotify,
+                        "\n\nAlbum: " + itemsArr.album.name + "\n");
+    
+                    fs.appendFile("log.txt", spotify + divider, function (err) {
+                        if (err) throw err;
+    
+                    });
                 }
             })
+            .catch(function (err) {
+                console.log(err);
+            });
         }
     })
 }
