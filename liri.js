@@ -8,11 +8,14 @@ var moment = require('moment');
 var spotify = new Spotify(keys.spotify);
 var action = process.argv[2];
 var value = process.argv[3];
-var bitURL = "https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp&date=upcoming";
-var omdbURL = "http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy";
+
 if (!value) {
     value = "Mr Nobody";
 }
+
+var bitURL = "https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp&date=upcoming";
+var omdbURL = "http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy";
+
 switch (action) {
     case "concert-this":
         bit();
