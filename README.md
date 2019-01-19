@@ -3,7 +3,7 @@ Backend app to search through Spotify, Bands in town and OMDB api's.
 
 Your commands will be:
 
-concert-this "Band/Artist"
+node liri.js concert-this "Band/Artist"
 
 This will search the Bands in town API and bring back info on upcoming shows; 
   * Name of the venue
@@ -11,7 +11,7 @@ This will search the Bands in town API and bring back info on upcoming shows;
   * Date of the Event
 
 
-spotify-this-song "Song Name"
+node liri.js spotify-this-song "Song Name"
  
 This will search spotify for info on song name input; 
   * Artist(s)
@@ -20,7 +20,7 @@ This will search spotify for info on song name input;
   * The album that the song is from
   
   
-movie-this "Movie-Name" (if no movie name is put in it will default to "Mr Nobody"
+node liri.js movie-this "Movie-Name" (if no movie name is put in it will default to "Mr Nobody"
  
 This will search OMBD for info on movie input;   
    * Title of the movie.
@@ -32,6 +32,6 @@ This will search OMBD for info on movie input;
    * Plot of the movie.
    * Actors in the movie.
 
-do-what-it-says (this will search whatever command is in the text file)
+node liri.js do-what-it-says (this will search whatever command is in the text file)
 
 Enjoy!
