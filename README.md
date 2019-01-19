@@ -34,4 +34,9 @@ This will search OMBD for info on movie input;
 
 node liri.js do-what-it-says (this will search whatever command is in the text file)
 
+
+Here is a video showing how to use the app: https://drive.google.com/file/d/1eNj3WHlT1cnZ6NUzjK-ZvQxNkE6iAeJX/view
+
+
 Enjoy!
+
