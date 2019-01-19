@@ -76,7 +76,7 @@ function ombd() {
             "\n\nStudio: " + response.data.Production,
             "\n\nLanguages: " + response.data.Language,
             "\n\nPlot: " + response.data.Plot,
-            "\n\nCast: " + response.data.Actors]
+            "\n\nCast: " + response.data.Actors + "\n"]
 
             console.log("\nMovie: " + response.data.Title,
                 "\n\nDate Released: " + response.data.Year,
@@ -85,7 +85,7 @@ function ombd() {
                 "\n\nStudio: " + response.data.Production,
                 "\n\nLanguages: " + response.data.Language,
                 "\n\nPlot: " + response.data.Plot,
-                "\n\nCast: " + response.data.Actors);
+                "\n\nCast: " + response.data.Actors + "\n");
 
             fs.appendFile("log.txt", movieData + divider, function (err) {
                 if (err) throw err;
